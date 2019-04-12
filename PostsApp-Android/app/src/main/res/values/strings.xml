@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Posts App</string>
+    <string name="menu_title">Posts App</string>
+
+    <string name="posts">Posts</string>
+    <string name="post_title">Post</string>
+    <string name="users_title">Users</string>
+
+    <string name="post">Post</string>
+    <string name="menu_posts">Posts</string>
+    <string name="menu_comments">Comments</string>
+    <string name="menu_users">Users</string>
+</resources>
