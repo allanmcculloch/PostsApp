@@ -1,9 +1,9 @@
 package com.postsapp.android.ui.postdetail
 
-import com.postsapp.android.ui.BaseViewModelTest
-import com.postsapp.android.usecases.GetPostUseCase
 import com.jraska.livedata.test
-import com.postsapp.android.model.Post
+import com.postsapp.android.model.PostDetail
+import com.postsapp.android.ui.BaseViewModelTest
+import com.postsapp.android.usecases.GetPostDetailUseCase
 import io.mockk.every
 import io.mockk.mockk
 import io.reactivex.Observable
@@ -12,13 +12,13 @@ import org.junit.Test
 
 class PostDetailViewModelTest : BaseViewModelTest() {
     lateinit var viewModel : PostDetailViewModel
-    lateinit var getPostUseCase: GetPostUseCase
+    lateinit var getPostDetailUseCase: GetPostDetailUseCase
 
     @Before
     fun setUp() {
-        getPostUseCase = mockk(relaxed = true)
+        getPostDetailUseCase = mockk(relaxed = true)
 
-        every {getPostUseCase.execute(testPost.id) }.returns(Observable.just(testPost))
+        every {getPostDetailUseCase.execute(testPost.id) }.returns(Observable.just(testPost))
     }
 
     @Test
@@ -36,15 +36,27 @@ class PostDetailViewModelTest : BaseViewModelTest() {
             .awaitValue()
             .assertHasValue()
             .assertValue(testPost.body)
+
+        viewModel.numberOfComments.test()
+            .awaitValue()
+            .assertHasValue()
+            .assertValue(testPost.numberOfComments.toString())
+
+        viewModel.authorName.test()
+            .awaitValue()
+            .assertHasValue()
+            .assertValue(testPost.userName)
     }
 
-    private fun createViewModel() = PostDetailViewModel(getPostUseCase)
+    private fun createViewModel() = PostDetailViewModel(getPostDetailUseCase)
 
-    private val testPost : Post =
-        Post(
+    private val testPost : PostDetail =
+        PostDetail(
             11,
             11,
             "Some title",
-            "Some body"
+            "Some body",
+            4,
+            "someUser"
         )
 }
