@@ -20,7 +20,6 @@ class CommentsListViewModel(private val getCommentsUseCase: GetCommentsUseCase, 
     private fun loadData() {
         subscription = getCommentsUseCase
             .execute()
-            .debounce(500, TimeUnit.MILLISECONDS)
             .subscribe({
             onFetchedList(it)
         }, Throwable::printStackTrace)

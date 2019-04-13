@@ -18,7 +18,6 @@ class PostsListViewModel(private val getPostsListUseCase: GetPostsListUseCase) :
     private fun loadData() {
         subscription = getPostsListUseCase
             .execute()
-            .debounce(500, TimeUnit.MILLISECONDS)
             .subscribe({
             onFetchedList(it)
         }, Throwable::printStackTrace)

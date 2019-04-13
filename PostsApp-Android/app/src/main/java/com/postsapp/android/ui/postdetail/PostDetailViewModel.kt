@@ -25,7 +25,6 @@ class PostDetailViewModel(private val getPostDetailUseCase: GetPostDetailUseCase
 
     fun loadData(postId : Int) {
         subscription = getPostDetailUseCase.execute(postId)
-            .debounce(500, TimeUnit.MILLISECONDS)
             .subscribe({
                 _title.value = it?.title
                 _body.value = it?.body

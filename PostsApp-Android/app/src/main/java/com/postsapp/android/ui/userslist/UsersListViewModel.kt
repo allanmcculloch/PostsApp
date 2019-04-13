@@ -17,7 +17,6 @@ class UsersListViewModel(private val getUsersUseCase: GetUsersUseCase) : ViewMod
 
     private fun loadData() {
         subscription = getUsersUseCase.execute()
-            .debounce(500, TimeUnit.MILLISECONDS)
             .subscribe({
                 onFetchedList(it)
             },Throwable::printStackTrace)
