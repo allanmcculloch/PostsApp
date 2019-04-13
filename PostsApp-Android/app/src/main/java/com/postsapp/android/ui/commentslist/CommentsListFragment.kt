@@ -1,34 +1,34 @@
-package com.postsapp.android.ui.userslist
+package com.postsapp.android.ui.commentslist
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.postsapp.android.R
+import com.postsapp.android.databinding.FragmentCommentsListBinding
 import com.postsapp.android.extensions.inflateBinding
+import kotlinx.android.synthetic.main.fragment_comments_list.*
 import org.koin.android.viewmodel.ext.android.viewModel
-import com.postsapp.android.databinding.FragmentUsersListBinding
-import kotlinx.android.synthetic.main.fragment_users_list.*
 
-class UsersListFragment : Fragment() {
-    private val viewModel: UsersListViewModel by viewModel()
+class CommentsListFragment : Fragment() {
+    private val viewModel: CommentsListViewModel by viewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflateBinding<FragmentUsersListBinding>(R.layout.fragment_users_list, container) { it.viewModel = viewModel }
+        return inflateBinding<FragmentCommentsListBinding>(R.layout.fragment_comments_list, container) { it.vm = viewModel }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        usersListRecyclerView.setHasFixedSize(true)
+        commentsListRecyclerView.setHasFixedSize(true)
 
-        usersListRecyclerView.layoutManager = LinearLayoutManager(this.context).apply {
+        commentsListRecyclerView.layoutManager = LinearLayoutManager(this.context).apply {
             orientation = RecyclerView.VERTICAL
         }
     }

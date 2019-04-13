@@ -7,15 +7,15 @@ import io.reactivex.Scheduler
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
-class GetCommentsByPostIdUseCase(
+class GetCommentsUseCase(
     private val repository: CommentsRepository,
     threadExecuter: Scheduler = Schedulers.io()
 ) :
-    ObservableWithParamUseCase<List<Comment>, Int>(
+    ObservableWithoutParamUseCase<List<Comment>>(
         threadExecuter,
         AndroidSchedulers.mainThread()
     ) {
-    override fun build(id : Int): Observable<List<Comment>> {
-        return repository.getCommentsByPost(id)
+    override fun build(): Observable<List<Comment>> {
+        return repository.getComments()
     }
 }

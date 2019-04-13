@@ -7,15 +7,19 @@ import io.reactivex.Observable
 class CommentsRepository(private val postsApiService : PostsApiService) {
     var cache : HashMap<Int,List<Comment>> = hashMapOf()
 
-    fun getComments(postId: Int) : Observable<List<Comment>> {
+    fun getCommentsByPost(postId: Int) : Observable<List<Comment>> {
         if (cache[postId] == null || cache[postId]?.isEmpty() == true) {
-            return postsApiService.getComments(postId)
+            return postsApiService.getCommentsByPost(postId)
                 .doOnNext { cache[postId] = it }
         }
         else {
-            return Observable.just(cache!![postId]!!)
-                .mergeWith(postsApiService.getComments(postId))
+            return Observable.just(cache[postId]!!)
+                .mergeWith(postsApiService.getCommentsByPost(postId))
                 .doOnNext { cache[postId] = it  }
         }
+    }
+
+    fun getComments() : Observable<List<Comment>> {
+        return postsApiService.getComments()
     }
 }

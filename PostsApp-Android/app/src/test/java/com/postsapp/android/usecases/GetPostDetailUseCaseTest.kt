@@ -6,7 +6,6 @@ import com.postsapp.android.model.User
 import com.postsapp.android.repository.CommentsRepository
 import com.postsapp.android.repository.PostsRepository
 import com.postsapp.android.repository.UsersRepository
-import com.postsapp.android.ui.postdetail.PostDetailViewModel
 import io.mockk.every
 import io.mockk.mockk
 import io.reactivex.Observable
@@ -35,7 +34,7 @@ class GetPostDetailUseCaseTest {
 
         every { postsRepository.getPost(examplePostId)}.returns(Observable.just(postExample))
         every { usersRepository.getUser(exampleUserId)}.returns(Observable.just(userExample))
-        every { commentsRepository.getComments(examplePostId)}.returns(Observable.just(commentsExample))
+        every { commentsRepository.getCommentsByPost(examplePostId)}.returns(Observable.just(commentsExample))
     }
 
     @Test

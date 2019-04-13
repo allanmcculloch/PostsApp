@@ -22,5 +22,8 @@ interface PostsApiEndpoints {
     fun getUser(@Path("id") id : Int): Observable<User>
 
     @GET("/comments")
-    fun getComments(@Query("postId") postId : Int): Observable<List<Comment>>
+    fun getCommentsByPost(@Query("postId") postId : Int): Observable<List<Comment>>
+
+    @GET("/comments")
+    fun getComments(): Observable<List<Comment>>
 }

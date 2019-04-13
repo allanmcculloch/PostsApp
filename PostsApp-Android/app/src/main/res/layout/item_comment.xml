@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+                name="viewModel"
+                type="com.postsapp.android.ui.commentslist.CommentViewModel"/>
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingRight="20dp"
+            android:paddingTop="30dp"
+            android:paddingBottom="10dp">
+
+        <ImageView android:layout_width="50dp"
+                   android:layout_height="50dp"
+                   app:layout_constraintStart_toStartOf="parent"
+                   app:layout_constraintTop_toTopOf="parent"
+                   android:layout_marginLeft="0dp"
+                   android:layout_marginTop="0dp"
+                   app:imageUrl="@{viewModel.imageUrl}"
+        />
+
+        <TextView
+                android:id="@+id/comment_item_name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                app:text="@{viewModel.name}"
+                android:layout_marginLeft="70dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+        <TextView
+                android:id="@+id/comment_item_email"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginLeft="70dp"
+                app:text="@{viewModel.email}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/comment_item_name"/>
+
+        <TextView
+                android:id="@+id/comment_item_body"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginLeft="70dp"
+                app:text="@{viewModel.body}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/comment_item_email"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

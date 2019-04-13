@@ -30,7 +30,7 @@ class GetPostDetailUseCase(
                     { post: Post -> usersRepository.getUser(post.userId) },
                     { post: Post, user: User -> Pair(user, post) }
                 ),
-            commentsRepository.getComments(id),
+            commentsRepository.getCommentsByPost(id),
             BiFunction { userPost, comments -> convert(userPost, comments) }
         )
     }

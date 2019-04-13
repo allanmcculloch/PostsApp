@@ -3,8 +3,8 @@ package com.postsapp.android.ui.postslist
 import androidx.lifecycle.ViewModel
 import com.postsapp.android.usecases.GetPostsListUseCase
 import com.postsapp.android.model.Post
-import com.postsapp.android.ui.postslist.PostsListAdapter
 import io.reactivex.disposables.Disposable
+import java.util.concurrent.TimeUnit
 
 class PostsListViewModel(private val getPostsListUseCase: GetPostsListUseCase) : ViewModel() {
     val postsListAdapter: PostsListAdapter = PostsListAdapter()
@@ -18,6 +18,7 @@ class PostsListViewModel(private val getPostsListUseCase: GetPostsListUseCase) :
     private fun loadData() {
         subscription = getPostsListUseCase
             .execute()
+            .debounce(500, TimeUnit.MILLISECONDS)
             .subscribe({
             onFetchedList(it)
         }, Throwable::printStackTrace)

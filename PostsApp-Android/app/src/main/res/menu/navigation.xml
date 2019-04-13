@@ -16,7 +16,7 @@
                 android:title="@string/menu_users"/>
 
         <item
-                android:id="@+id/menu_comments"
+                android:id="@+id/commnetsFragment"
                 android:icon="@android:drawable/sym_action_chat"
                 android:title="@string/menu_comments"/>
 

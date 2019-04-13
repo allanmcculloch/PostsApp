@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.postsapp.android.usecases.GetPostDetailUseCase
 import io.reactivex.disposables.Disposable
+import java.util.concurrent.TimeUnit
 
 class PostDetailViewModel(private val getPostDetailUseCase: GetPostDetailUseCase) : ViewModel() {
     private val _title : MutableLiveData<String> = MutableLiveData()
@@ -23,6 +24,7 @@ class PostDetailViewModel(private val getPostDetailUseCase: GetPostDetailUseCase
 
     fun loadData(postId : Int) {
         subscription = getPostDetailUseCase.execute(postId)
+            .debounce(500, TimeUnit.MILLISECONDS)
             .subscribe({
                 _title.value = it?.title
                 _body.value = it?.body
