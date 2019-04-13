@@ -20,7 +20,7 @@ class PostsRepositoryTest {
     }
 
     @Test
-    fun when_emptycache_callapi_returnsApiData() {
+    fun getPosts_when_emptycache_callapi_returnsApiData() {
         every { postsApiServiceMock.getPosts() }.returns(Observable.just(sampleDataApi))
 
         val postsReturned = postsRepository.getPosts()
@@ -29,7 +29,7 @@ class PostsRepositoryTest {
     }
 
     @Test
-    fun when_hasCache_returnsCache_thenApi() {
+    fun getPosts_when_hasCache_returnsCache_thenApi() {
         every { postsApiServiceMock.getPosts() }.returns(Observable.just(sampleDataApi))
 
         postsRepository.cache = sampleDataInCache
@@ -41,7 +41,7 @@ class PostsRepositoryTest {
     }
 
     @Test
-    fun when_nocache_updatesCacheFromApi() {
+    fun getPosts_when_nocache_updatesCacheFromApi() {
         postsRepository.cache = listOf()
 
         every { postsApiServiceMock.getPosts() }.returns(Observable.just(sampleDataApi))
