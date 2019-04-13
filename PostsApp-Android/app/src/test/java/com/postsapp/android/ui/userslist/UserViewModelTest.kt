@@ -15,9 +15,10 @@ class UserViewModelTest : BaseViewModelTest() {
 
         viewModel.userName.test().assertValue(userTestData.name)
         viewModel.imageUrl.test().assertValue("https://api.adorable.io/avatars/285/${userTestData.id}.png")
+        viewModel.email.test().assertValue(userTestData.email)
     }
 
     private fun createViewModel() = UserViewModel()
 
-    private val userTestData = User(1, "user1")
+    private val userTestData = User(1, "user1", "email@email.com")
 }

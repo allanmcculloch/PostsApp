@@ -2,6 +2,7 @@ package com.postsapp.android.ui.postslist
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.postsapp.android.AVATAR_BASE_URL
 import com.postsapp.android.model.Post
 
 class PostViewModel {
@@ -16,6 +17,6 @@ class PostViewModel {
     fun bind(post : Post) {
         _body.value = post.body
         _title.value = post.title
-        _imageUrl.value = "https://api.adorable.io/avatars/285/${post.userId}.png"
+        _imageUrl.value = "$AVATAR_BASE_URL/${post.userId}.png"
     }
 }

@@ -2,6 +2,7 @@ package com.postsapp.android.ui.commentslist
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.postsapp.android.AVATAR_BASE_URL
 import com.postsapp.android.model.Comment
 
 class CommentViewModel {
@@ -19,6 +20,6 @@ class CommentViewModel {
         _name.value = comment.name
         _body.value = comment.body
         _email.value = comment.email
-        _imageUrl.value = "https://api.adorable.io/avatars/285/${comment.name}.png"
+        _imageUrl.value = "$AVATAR_BASE_URL/${comment.name}.png"
     }
 }

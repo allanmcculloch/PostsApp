@@ -25,7 +25,6 @@ class UsersListTests {
         //TODO: handle network delay with Rx Idling Resource or mock server
 
         usersListScreen.checkPositionHasText("Leanne Graham",0)
-
         usersListScreen.checkPositionHasText("Ervin Howell",1)
     }
 }

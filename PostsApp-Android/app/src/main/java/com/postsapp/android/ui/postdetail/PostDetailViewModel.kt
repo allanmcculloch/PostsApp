@@ -3,6 +3,7 @@ package com.postsapp.android.ui.postdetail
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.postsapp.android.AVATAR_BASE_URL
 import com.postsapp.android.usecases.GetPostDetailUseCase
 import io.reactivex.disposables.Disposable
 import java.util.concurrent.TimeUnit
@@ -30,7 +31,7 @@ class PostDetailViewModel(private val getPostDetailUseCase: GetPostDetailUseCase
                 _body.value = it?.body
                 _numberOfComments.value = it?.numberOfComments.toString()
                 _authorName.value = it?.userName
-                _imageUrl.value = "https://api.adorable.io/avatars/285/${it?.userId}.png"
+                _imageUrl.value = "$AVATAR_BASE_URL/${it?.userId}.png"
 
             },Throwable::printStackTrace)
     }
