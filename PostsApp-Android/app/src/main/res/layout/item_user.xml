@@ -26,21 +26,30 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-                android:id="@+id/user_email"
+            android:id="@+id/user_email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:text="@{viewModel.email}"
+            android:layout_marginStart="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/user_name" />
+
+        <TextView
+                android:id="@+id/user_company"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textStyle="bold"
-                app:text="@{viewModel.email}"
+                app:text="@{viewModel.company}"
                 android:layout_marginStart="20dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/user_name" />
+                app:layout_constraintTop_toBottomOf="@id/user_email" />
 
         <ImageView android:layout_width="200dp"
                    android:layout_height="wrap_content"
                    app:layout_constraintStart_toStartOf="parent"
                    app:layout_constraintEnd_toEndOf="parent"
-                   app:layout_constraintTop_toBottomOf="@id/user_email"
+                   app:layout_constraintTop_toBottomOf="@id/user_company"
                    android:layout_marginStart="30dp"
                    android:layout_marginEnd="30dp"
                    android:layout_marginTop="10dp"

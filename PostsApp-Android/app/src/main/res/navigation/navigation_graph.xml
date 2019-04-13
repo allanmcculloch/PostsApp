@@ -23,7 +23,7 @@
     <fragment
             android:id="@+id/postDetailFragment"
             android:name="com.postsapp.android.ui.postdetail.PostDetailFragment"
-            android:label="Post Details"
+            android:label="View Post"
             tools:layout="@layout/fragment_post_detail"/>
 
     <fragment
