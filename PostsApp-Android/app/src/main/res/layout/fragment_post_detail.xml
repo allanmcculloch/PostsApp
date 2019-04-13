@@ -15,20 +15,9 @@
             android:layout_height="match_parent"
             app:layout_behavior="@string/appbar_scrolling_view_behavior"
             tools:context=".MainActivity"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="40dp"
             android:paddingLeft="20dp"
             android:paddingRight="20dp">
-
-        <TextView
-                android:id="@+id/header"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textStyle="bold"
-                android:textSize="28sp"
-                android:text="@string/post"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"/>
-
         <TextView
                 android:id="@+id/post_detail_title"
                 android:layout_width="wrap_content"
@@ -38,13 +27,13 @@
                 android:layout_marginStart="20dp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/header"/>
+                app:layout_constraintTop_toTopOf="parent"/>
 
         <TextView
-                android:id="@+id/post_detail_body"
+                android:id="@+id/authorNameLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{viewModel.body}"
+                android:text="@string/by"
                 android:layout_marginTop="10dp"
                 android:layout_marginStart="20dp"
                 app:layout_constraintStart_toStartOf="parent"
@@ -57,9 +46,28 @@
                 android:text="@{viewModel.authorName}"
                 android:layout_marginTop="10dp"
                 android:layout_marginStart="20dp"
+                app:layout_constraintStart_toStartOf="@id/authorNameLabel"
+                app:layout_constraintTop_toBottomOf="@id/post_detail_title"/>
+
+        <TextView
+                android:id="@+id/post_detail_body"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{viewModel.body}"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="20dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/authorNameLabel"/>
+
+        <TextView
+                android:id="@+id/numberOfCommentsLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/number_of_comments"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="20dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/post_detail_body"/>
-
 
         <TextView
                 android:id="@+id/numberOfComments"
@@ -68,8 +76,8 @@
                 android:text="@{viewModel.numberOfComments}"
                 android:layout_marginTop="10dp"
                 android:layout_marginStart="20dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/authorName"/>
+                app:layout_constraintStart_toEndOf="@id/numberOfCommentsLabel"
+                app:layout_constraintTop_toBottomOf="@id/post_detail_body"/>
 
 
         <ImageView android:layout_width="250dp"

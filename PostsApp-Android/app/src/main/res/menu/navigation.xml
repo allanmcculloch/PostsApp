@@ -11,12 +11,12 @@
                 android:title="@string/menu_posts"/>
 
         <item
-                android:id="@+id/usersFragment"
+                android:id="@+id/usersListFragment"
                 android:icon="@drawable/ic_menu_users"
                 android:title="@string/menu_users"/>
 
         <item
-                android:id="@+id/commnetsFragment"
+                android:id="@+id/commentsListFragment"
                 android:icon="@android:drawable/sym_action_chat"
                 android:title="@string/menu_comments"/>
 

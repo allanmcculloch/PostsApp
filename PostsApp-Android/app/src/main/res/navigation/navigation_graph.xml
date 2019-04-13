@@ -27,13 +27,13 @@
             tools:layout="@layout/fragment_post_detail"/>
 
     <fragment
-            android:id="@+id/usersFragment"
+            android:id="@+id/usersListFragment"
             android:name="com.postsapp.android.ui.userslist.UsersListFragment"
             android:label="Users"
             tools:layout="@layout/fragment_users_list" />
 
     <fragment
-            android:id="@+id/commnetsFragment"
+            android:id="@+id/commentsListFragment"
             android:name="com.postsapp.android.ui.commentslist.CommentsListFragment"
             android:label="Comments"
             tools:layout="@layout/fragment_comments_list" />

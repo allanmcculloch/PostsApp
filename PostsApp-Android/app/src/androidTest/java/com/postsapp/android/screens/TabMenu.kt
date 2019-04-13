@@ -7,14 +7,14 @@ import com.postsapp.android.R
 
 internal class TabMenu {
     fun openPostsMenu() {
-        onView(withId(R.id.menu_posts)).perform(click())
+        onView(withId(R.id.postsListFragment)).perform(click())
     }
 
     fun openUsersMenu() {
-        onView(withId(R.id.menu_users)).perform(click())
+        onView(withId(R.id.usersListFragment)).perform(click())
     }
 
     fun openCommentsMenu() {
-        onView(withId(R.id.menu_comments)).perform(click())
+        onView(withId(R.id.commentsListFragment)).perform(click())
     }
 }
