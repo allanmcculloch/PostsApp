@@ -5,17 +5,17 @@ import com.postsapp.android.repository.remote.PostsApiService
 import io.reactivex.Observable
 
 class CommentsRepository(private val postsApiService : PostsApiService) {
-    var cache : List<Comment> = listOf()
+    var cache : HashMap<Int,List<Comment>> = hashMapOf()
 
     fun getComments(postId: Int) : Observable<List<Comment>> {
-        if (cache.isEmpty()) {
+        if (cache[postId] == null || cache[postId]?.isEmpty() == true) {
             return postsApiService.getComments(postId)
-                .doOnNext { cache = it }
+                .doOnNext { cache[postId] = it }
         }
         else {
-            return Observable.just(cache)
+            return Observable.just(cache!![postId]!!)
                 .mergeWith(postsApiService.getComments(postId))
-                .doOnNext { cache = it  }
+                .doOnNext { cache[postId] = it  }
         }
     }
 }

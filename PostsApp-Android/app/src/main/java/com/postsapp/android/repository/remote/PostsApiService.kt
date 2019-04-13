@@ -13,7 +13,13 @@ class PostsApiService(clientProvider: ClientProvider) {
 
     fun getPost(id: Int) : Observable<Post> = api.getPost(id)
 
-    fun getUsers() : Observable<List<User>> = api.getUsers()
+    fun getUsers() : Observable<List<User>> =
+        try {
+            api.getUsers()
+        } catch(t: Throwable) {
+            Observable.empty()
+        }
+
 
     fun getUser(id : Int) : Observable<User> = api.getUser(id)
 
