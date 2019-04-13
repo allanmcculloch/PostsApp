@@ -12,7 +12,8 @@
 
         <action
                 android:id="@+id/action_postsListFragment_to_postDetailFragment"
-                app:destination="@id/postDetailFragment">
+                app:destination="@id/postDetailFragment"
+                app:enterAnim="@anim/nav_default_enter_anim">
             <argument
                     android:name="postId"
                     app:argType="integer"
