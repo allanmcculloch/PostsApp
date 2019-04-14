@@ -8,7 +8,6 @@ import com.postsapp.android.repository.CommentsRepository
 import com.postsapp.android.repository.PostsRepository
 import com.postsapp.android.repository.UsersRepository
 import io.reactivex.Observable
-import io.reactivex.Scheduler
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.functions.BiFunction
 import io.reactivex.schedulers.Schedulers
@@ -16,11 +15,10 @@ import io.reactivex.schedulers.Schedulers
 class GetPostDetailUseCase(
     private val postRepository: PostsRepository,
     private val commentsRepository: CommentsRepository,
-    private val usersRepository: UsersRepository,
-    threadExecuter: Scheduler = Schedulers.io()
+    private val usersRepository: UsersRepository
 ) :
     ObservableWithParamUseCase<PostDetail, Int>(
-        threadExecuter,
+        Schedulers.io(),
         AndroidSchedulers.mainThread()
     ) {
     override fun build(id: Int): Observable<PostDetail> {

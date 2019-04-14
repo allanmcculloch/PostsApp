@@ -3,16 +3,14 @@ package com.postsapp.android.usecases
 import com.postsapp.android.model.Comment
 import com.postsapp.android.repository.CommentsRepository
 import io.reactivex.Observable
-import io.reactivex.Scheduler
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
 class GetCommentsUseCase(
-    private val repository: CommentsRepository,
-    threadExecuter: Scheduler = Schedulers.io()
+    private val repository: CommentsRepository
 ) :
     ObservableWithoutParamUseCase<List<Comment>>(
-        threadExecuter,
+        Schedulers.io(),
         AndroidSchedulers.mainThread()
     ) {
     override fun build(): Observable<List<Comment>> {

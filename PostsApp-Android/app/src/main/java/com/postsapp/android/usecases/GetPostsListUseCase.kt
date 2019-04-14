@@ -1,15 +1,14 @@
 package com.postsapp.android.usecases
 
-import com.postsapp.android.repository.PostsRepository
 import com.postsapp.android.model.Post
+import com.postsapp.android.repository.PostsRepository
 import io.reactivex.Observable
-import io.reactivex.Scheduler
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
-class GetPostsListUseCase(private val repository: PostsRepository, threadExecuter: Scheduler = Schedulers.io()) :
+class GetPostsListUseCase(private val repository: PostsRepository) :
     ObservableWithoutParamUseCase<List<Post>>(
-        threadExecuter,
+        Schedulers.io(),
         AndroidSchedulers.mainThread()
     ) {
     override fun build(): Observable<List<Post>> {
