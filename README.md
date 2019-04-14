@@ -6,6 +6,7 @@ This is a simple demo Android app with the following features:
 - Link to post details
 - View a list of users
 - View a list of comments linked from a post
+- Loads data from an API and caches the results (in memory)
 
 Built with the latest Android Kotlin development using:
 
@@ -37,7 +38,7 @@ Future improvements / ToDos
 - Improve UI styling
 - Better error handling and status notifications to users
 - Add loading notifications
-- Seperate out api models from domain models
+- Separate out api models from domain models
 - In memory mock http server for UI Tests 
 
 
