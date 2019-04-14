@@ -22,7 +22,7 @@ class PostsRepository(private val postsApiService : PostsApiService) {
         }
         else {
             return Observable.just(cache)
-                .mergeWith(postsApiService.getPosts())
+                .mergeWith(postsApiService.getPosts().onErrorResumeNext(Observable.just(cache)))
                 .doOnNext { _cache = it.toMutableList() }
 
         }
