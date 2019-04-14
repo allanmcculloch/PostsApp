@@ -11,24 +11,8 @@ import org.junit.Before
 import org.junit.Test
 
 class PostListViewModelTest : BaseViewModelTest() {
-    lateinit var viewModel : PostsListViewModel
-    lateinit var getPostsListUseCase : GetPostsListUseCase
-
-    @Before
-    fun setUp() {
-        getPostsListUseCase = mockk(relaxed = true)
-
-        every {getPostsListUseCase.execute() }.returns(Observable.just(sampleData))
-    }
-
-    @Test
-    fun returnsCorrectNumberOfRows() {
-        viewModel = createViewModel()
-
-        assertEquals(viewModel.postsListAdapter.itemCount, sampleData.count())
-    }
-
-    private fun createViewModel() = PostsListViewModel(getPostsListUseCase)
+    lateinit var viewModel: PostsListViewModel
+    lateinit var getPostsListUseCase: GetPostsListUseCase
 
     private val sampleData =
         listOf(
@@ -45,4 +29,20 @@ class PostListViewModelTest : BaseViewModelTest() {
                 "period2"
             )
         )
+
+    @Before
+    fun setUp() {
+        getPostsListUseCase = mockk(relaxed = true)
+
+        every { getPostsListUseCase.execute() }.returns(Observable.just(sampleData))
+    }
+
+    @Test
+    fun returnsCorrectNumberOfRows() {
+        viewModel = createViewModel()
+
+        assertEquals(viewModel.postsListAdapter.itemCount, sampleData.count())
+    }
+
+    private fun createViewModel() = PostsListViewModel(getPostsListUseCase)
 }

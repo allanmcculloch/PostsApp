@@ -11,14 +11,24 @@ import org.junit.Before
 import org.junit.Test
 
 class PostDetailViewModelTest : BaseViewModelTest() {
-    lateinit var viewModel : PostDetailViewModel
+    private val testPost: PostDetail =
+        PostDetail(
+            11,
+            11,
+            "Some title",
+            "Some body",
+            4,
+            "someUser"
+        )
+
+    lateinit var viewModel: PostDetailViewModel
     lateinit var getPostDetailUseCase: GetPostDetailUseCase
 
     @Before
     fun setUp() {
         getPostDetailUseCase = mockk(relaxed = true)
 
-        every {getPostDetailUseCase.execute(testPost.id) }.returns(Observable.just(testPost))
+        every { getPostDetailUseCase.execute(testPost.id) }.returns(Observable.just(testPost))
     }
 
     @Test
@@ -49,14 +59,4 @@ class PostDetailViewModelTest : BaseViewModelTest() {
     }
 
     private fun createViewModel() = PostDetailViewModel(getPostDetailUseCase)
-
-    private val testPost : PostDetail =
-        PostDetail(
-            11,
-            11,
-            "Some title",
-            "Some body",
-            4,
-            "someUser"
-        )
 }

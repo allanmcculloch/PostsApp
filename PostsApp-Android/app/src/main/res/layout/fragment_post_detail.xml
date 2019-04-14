@@ -16,8 +16,8 @@
             app:layout_behavior="@string/appbar_scrolling_view_behavior"
             tools:context=".MainActivity"
             android:layout_marginTop="40dp"
-            android:paddingLeft="20dp"
-            android:paddingRight="20dp">
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp">
         <TextView
                 android:id="@+id/post_detail_title"
                 android:layout_width="wrap_content"
@@ -98,7 +98,8 @@
                    app:layout_constraintTop_toBottomOf="@id/viewCommentsButton"
                    android:layout_marginStart="20dp"
                    android:layout_marginTop="30dp"
-                   app:imageUrl="@{viewModel.imageUrl}"/>
+                   app:imageUrl="@{viewModel.imageUrl}"
+                   android:contentDescription="@string/avatar_image"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

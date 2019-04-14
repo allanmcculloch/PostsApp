@@ -11,9 +11,26 @@ import org.junit.Test
 
 class CommentsRepositoryTest {
     private lateinit var postsApiServiceMock: PostsApiService
-    private lateinit var commentsRepository : CommentsRepository
+    private lateinit var commentsRepository: CommentsRepository
 
     private val samplePostId = 1
+    private val sampleDataApi =
+        listOf(
+            Comment(1, 1, "name1", "email1", "body1"),
+            Comment(1, 2, "name2", "email2", "body2"),
+            Comment(1, 3, "name3", "email3", "body3")
+
+        )
+
+    private val sampleDataInCachePost1 =
+        listOf(
+            Comment(1, 4, "name4", "email4", "body4")
+        )
+
+    private val sampleDataInCachePost2 =
+        listOf(
+            Comment(2, 5, "name4", "email4", "body4")
+        )
 
     @Before
     fun setup() {
@@ -38,8 +55,8 @@ class CommentsRepositoryTest {
 
         val commentsReturned = commentsRepository.getCommentsByPost(samplePostId)
 
-        commentsReturned.test().assertValueAt(0) { it == sampleDataInCachePost1}
-        commentsReturned.test().assertValueAt(1) { it == sampleDataApi}
+        commentsReturned.test().assertValueAt(0) { it == sampleDataInCachePost1 }
+        commentsReturned.test().assertValueAt(1) { it == sampleDataApi }
     }
 
     @Test
@@ -50,7 +67,7 @@ class CommentsRepositoryTest {
 
         val commentsReturned = commentsRepository.getCommentsByPost(samplePostId)
 
-        commentsReturned.test().assertValueAt(0) { it == sampleDataApi}
+        commentsReturned.test().assertValueAt(0) { it == sampleDataApi }
 
         assertEquals(commentsRepository.cache[samplePostId], sampleDataApi)
     }
@@ -63,7 +80,7 @@ class CommentsRepositoryTest {
 
         val commentsReturned = commentsRepository.getComments()
 
-        commentsReturned.test().assertValueAt(0) { it == sampleDataApi}
+        commentsReturned.test().assertValueAt(0) { it == sampleDataApi }
 
         assertEquals(commentsRepository.cache[samplePostId], sampleDataApi)
     }
@@ -76,8 +93,8 @@ class CommentsRepositoryTest {
 
         val commentsReturned = commentsRepository.getComments()
 
-        commentsReturned.test().assertValueAt(0) { it == sampleDataInCachePost1}
-        commentsReturned.test().assertValueAt(1) { it == sampleDataApi}
+        commentsReturned.test().assertValueAt(0) { it == sampleDataInCachePost1 }
+        commentsReturned.test().assertValueAt(1) { it == sampleDataApi }
 
         assertEquals(commentsRepository.cache[samplePostId], sampleDataApi)
     }
@@ -93,26 +110,8 @@ class CommentsRepositoryTest {
         commentsReturned.test().assertValueAt(0) { it.containsAll(sampleDataInCachePost1) }
         commentsReturned.test().assertValueAt(0) { it.containsAll(sampleDataInCachePost2) }
 
-        commentsReturned.test().assertValueAt(1) { it == sampleDataApi}
+        commentsReturned.test().assertValueAt(1) { it == sampleDataApi }
 
         assertEquals(commentsRepository.cache[samplePostId], sampleDataApi)
     }
-
-    private val sampleDataApi =
-        listOf(
-            Comment(1,1,"name1","email1","body1"),
-            Comment(1,2,"name2","email2","body2"),
-            Comment(1,3,"name3","email3","body3")
-
-        )
-
-    private val sampleDataInCachePost1 =
-        listOf(
-            Comment(1,4,"name4","email4","body4")
-        )
-
-    private val sampleDataInCachePost2 =
-        listOf(
-            Comment(2,5,"name4","email4","body4")
-        )
 }

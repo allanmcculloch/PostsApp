@@ -15,11 +15,9 @@ Built with the latest Android Kotlin development using:
 - Koin (Dependency Injection)
 - MVVM / View Models
 - Retrofit2 (API HTTP calls)
-- Moshi (JSON serialisation)
 - RxJava2
 - Live Data (Architecture Component)
 - Navigation (Architecture Component)
-- Picasso (for loading images)
 - Simple transition animations
 
 Shows unit testing using:
@@ -39,8 +37,11 @@ Future improvements / ToDos
 - Improve UI styling
 - Better error handling and status notifications to users
 - Add loading notifications
+- Add local disk caching (e.g. room) and extra layer
+- Add more animations
 - Separate out api models from domain models
 - In memory mock http server for UI Tests 
+- Setup Proguard / prod build
 
 
 ![](postsAppDemo.gif)

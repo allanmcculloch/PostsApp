@@ -7,6 +7,9 @@ import com.postsapp.android.model.Company
 import org.junit.Test
 
 class UserViewModelTest : BaseViewModelTest() {
+    private val userTestData =
+        User(1, "user1", "email@email.com", company = Company("some company", "catchphrase", "bs"))
+
     @Test
     fun testReturnsCorrectValues() {
 
@@ -21,6 +24,4 @@ class UserViewModelTest : BaseViewModelTest() {
     }
 
     private fun createViewModel() = UserViewModel()
-
-    private val userTestData = User(1, "user1", "email@email.com",company = Company("some company","catchphrase","bs"))
 }

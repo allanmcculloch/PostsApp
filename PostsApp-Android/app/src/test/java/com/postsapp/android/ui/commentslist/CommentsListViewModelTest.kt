@@ -13,16 +13,24 @@ import org.junit.Before
 import org.junit.Test
 
 class CommentsListViewModelTest : BaseViewModelTest() {
-    lateinit var viewModel : CommentsListViewModel
-    lateinit var getCommentsUseCase : GetCommentsUseCase
+    lateinit var viewModel: CommentsListViewModel
+    lateinit var getCommentsUseCase: GetCommentsUseCase
     lateinit var getCommentsByPostIdUseCase: GetCommentsByPostIdUseCase
+
+    private val sampleData =
+        listOf(
+            Comment(1, 1234, "name1", "email1@email", "body1"),
+            Comment(2, 1235, "name2", "email2@email", "body2"),
+            Comment(2, 1236, "name3", "email3@email", "body3"),
+            Comment(3, 1236, "name4", "email4@email", "body4")
+        )
 
     @Before
     fun setUp() {
         getCommentsUseCase = mockk(relaxed = true)
         getCommentsByPostIdUseCase = mockk(relaxed = true)
 
-        every {getCommentsUseCase.execute() }.returns(Observable.just(sampleData))
+        every { getCommentsUseCase.execute() }.returns(Observable.just(sampleData))
     }
 
     @Test
@@ -38,22 +46,14 @@ class CommentsListViewModelTest : BaseViewModelTest() {
     fun whenPostIdSupplied_returnsCorrectNumberOfRows() {
         val postIdToTest = 2
 
-        every {getCommentsByPostIdUseCase.execute(postIdToTest) }.returns(Observable.just(sampleData.filter { p -> p.postId == postIdToTest }))
+        every { getCommentsByPostIdUseCase.execute(postIdToTest) }.returns(Observable.just(sampleData.filter { p -> p.postId == postIdToTest }))
 
         viewModel = createViewModel()
 
         viewModel.loadData(postIdToTest)
 
-        assertEquals(sampleData.count { r -> r.postId == postIdToTest}, viewModel.commentsListAdapter.itemCount)
+        assertEquals(sampleData.count { r -> r.postId == postIdToTest }, viewModel.commentsListAdapter.itemCount)
     }
 
     private fun createViewModel() = CommentsListViewModel(getCommentsUseCase, getCommentsByPostIdUseCase)
-
-    private val sampleData =
-        listOf(
-            Comment(1, 1234,"name1","email1@email", "body1"),
-            Comment(2, 1235, "name2","email2@email", "body2"),
-            Comment(2, 1236, "name3","email3@email", "body3"),
-            Comment(3, 1236, "name4","email4@email", "body4")
-        )
 }

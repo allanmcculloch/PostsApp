@@ -1,11 +1,10 @@
 <resources>
     <string name="app_name">Posts App</string>
-    <string name="menu_title">Posts App</string>
-    <string name="users_title">Users</string>
     <string name="menu_posts">Posts</string>
     <string name="menu_comments">Comments</string>
     <string name="menu_users">Users</string>
     <string name="number_of_comments">Number of comments:</string>
     <string name="by">By:</string>
     <string name="veiw_comments">Veiw Comments</string>
+    <string name="avatar_image">Avatar Image</string>
 </resources>

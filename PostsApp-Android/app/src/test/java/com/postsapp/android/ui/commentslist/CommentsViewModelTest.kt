@@ -8,6 +8,8 @@ import com.postsapp.android.ui.commentslist.CommentViewModel
 import org.junit.Test
 
 class CommentsViewModelTest : BaseViewModelTest() {
+    private val commentTestData = Comment(1, 1234, "name1", "email1@email", "body1")
+
     @Test
     fun testReturnsCorrectValues() {
 
@@ -22,6 +24,4 @@ class CommentsViewModelTest : BaseViewModelTest() {
     }
 
     private fun createViewModel() = CommentViewModel()
-
-    private val commentTestData = Comment(1, 1234,"name1","email1@email", "body1")
 }

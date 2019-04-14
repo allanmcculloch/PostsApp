@@ -17,7 +17,6 @@ class GetPostDetailUseCase(
     private val postRepository: PostsRepository,
     private val commentsRepository: CommentsRepository,
     private val usersRepository: UsersRepository,
-
     threadExecuter: Scheduler = Schedulers.io()
 ) :
     ObservableWithParamUseCase<PostDetail, Int>(

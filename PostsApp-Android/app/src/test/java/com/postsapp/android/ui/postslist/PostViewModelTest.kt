@@ -7,6 +7,13 @@ import com.postsapp.android.ui.postslist.PostViewModel
 import org.junit.Test
 
 class PostViewModelTest : BaseViewModelTest() {
+    private val postTestData = Post(
+        1,
+        1,
+        "title1",
+        "body1"
+    )
+
     @Test
     fun testReturnsCorrectValues() {
 
@@ -19,11 +26,4 @@ class PostViewModelTest : BaseViewModelTest() {
     }
 
     private fun createViewModel() = PostViewModel()
-
-    private val postTestData = Post(
-        1,
-        1,
-        "title1",
-        "body1"
-    )
 }

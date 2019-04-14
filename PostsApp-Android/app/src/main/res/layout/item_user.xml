@@ -23,7 +23,8 @@
                 android:layout_marginStart="20dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"/>
+                app:layout_constraintTop_toTopOf="parent"
+                android:contentDescription="@string/avatar_image"/>
 
         <TextView
                 android:id="@+id/user_email"
@@ -53,7 +54,8 @@
                    android:layout_marginStart="30dp"
                    android:layout_marginEnd="30dp"
                    android:layout_marginTop="10dp"
-                   app:imageUrl="@{viewModel.imageUrl}"/>
+                   app:imageUrl="@{viewModel.imageUrl}"
+                   android:contentDescription="@string/avatar_image"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

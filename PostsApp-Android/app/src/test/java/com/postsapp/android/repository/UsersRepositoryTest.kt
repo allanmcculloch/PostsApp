@@ -13,7 +13,19 @@ import org.junit.Test
 
 class UsersRepositoryTest {
     private lateinit var postsApiServiceMock: PostsApiService
-    private lateinit var usersRepository : UsersRepository
+    private lateinit var usersRepository: UsersRepository
+
+    private val sampleDataApi =
+        listOf(
+            User(1, "User1"),
+            User(2, "User2")
+
+        )
+
+    private val sampleDataInCache =
+        listOf(
+            User(3, "User3")
+        )
 
     @Before
     fun setup() {
@@ -38,8 +50,8 @@ class UsersRepositoryTest {
 
         val usersReturned = usersRepository.getUsers()
 
-        usersReturned.test().assertValueAt(0) { it == sampleDataInCache}
-        usersReturned.test().assertValueAt(1) { it == sampleDataApi}
+        usersReturned.test().assertValueAt(0) { it == sampleDataInCache }
+        usersReturned.test().assertValueAt(1) { it == sampleDataApi }
     }
 
     @Test
@@ -50,7 +62,7 @@ class UsersRepositoryTest {
 
         val usersReturned = usersRepository.getUsers()
 
-        usersReturned.test().assertValueAt(0) { it == sampleDataApi}
+        usersReturned.test().assertValueAt(0) { it == sampleDataApi }
 
         assertEquals(usersRepository.cache, sampleDataApi)
     }
@@ -67,11 +79,11 @@ class UsersRepositoryTest {
 
         val usersReturned = usersRepository.getUser(userId)
 
-        usersReturned.test().assertValueAt(0) { it == userItem}
+        usersReturned.test().assertValueAt(0) { it == userItem }
 
         Assert.assertTrue(usersRepository.cache.contains(userItem))
 
-        verify(exactly = 1) { postsApiServiceMock.getUser(userId)}
+        verify(exactly = 1) { postsApiServiceMock.getUser(userId) }
     }
 
     @Test
@@ -85,18 +97,6 @@ class UsersRepositoryTest {
 
         usersReturned.test().assertValueAt(0) { it == userItem }
 
-        verify(exactly = 0) { postsApiServiceMock.getUser(any())}
+        verify(exactly = 0) { postsApiServiceMock.getUser(any()) }
     }
-
-    private val sampleDataApi =
-        listOf(
-            User(1, "User1"),
-            User(2, "User2")
-
-        )
-
-    private val sampleDataInCache =
-        listOf(
-            User(3,"User3")
-        )
 }
