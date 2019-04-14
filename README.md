@@ -39,3 +39,6 @@ Future improvements / ToDos
 - Add loading notifications
 - Seperate out api models from domain models
 - In memory mock http server for UI Tests 
+
+
+![](postsAppDemo.gif)
