@@ -17,7 +17,6 @@ class PostDetailFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-
         var postId = arguments?.getInt("postId")
 
         viewModel.loadData(postId!!)
