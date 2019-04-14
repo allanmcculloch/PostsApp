@@ -25,7 +25,18 @@
             android:id="@+id/postDetailFragment"
             android:name="com.postsapp.android.ui.postdetail.PostDetailFragment"
             android:label="View Post"
-            tools:layout="@layout/fragment_post_detail"/>
+            tools:layout="@layout/fragment_post_detail">
+
+        <action
+                android:id="@+id/action_postsDetailFragment_to_commentsListFragment"
+                app:destination="@id/commentsListFragment"
+                app:enterAnim="@anim/nav_default_enter_anim">
+            <argument
+                    android:name="postId"
+                    app:argType="integer"
+                    android:defaultValue="0" />
+        </action>
+    </fragment>
 
     <fragment
             android:id="@+id/usersListFragment"

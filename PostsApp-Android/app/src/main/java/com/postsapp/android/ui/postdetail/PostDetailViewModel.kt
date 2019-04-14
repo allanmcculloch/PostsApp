@@ -21,9 +21,13 @@ class PostDetailViewModel(private val getPostDetailUseCase: GetPostDetailUseCase
     val numberOfComments : LiveData<String> = _numberOfComments
     val imageUrl : LiveData<String> = _imageUrl
 
+    var postId : Int? = null
+
     private lateinit var subscription: Disposable
 
     fun loadData(postId : Int) {
+        this.postId = postId
+
         subscription = getPostDetailUseCase.execute(postId)
             .subscribe({
                 _title.value = it?.title

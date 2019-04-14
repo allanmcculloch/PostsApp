@@ -28,7 +28,7 @@ internal class PostsListScreen {
 
 fun clickItemOnRecycler(recyclerId : Int, position : Int) {
     onView(withId(recyclerId))
-        .perform(RecyclerViewActions.actionOnItemAtPosition<PostsListAdapter.ViewHolder>(0, click()))
+        .perform(RecyclerViewActions.actionOnItemAtPosition<PostsListAdapter.ViewHolder>(position, click()))
 }
 
 fun checkTextOnRecycler(recyclerId : Int, text: String, position : Int) {

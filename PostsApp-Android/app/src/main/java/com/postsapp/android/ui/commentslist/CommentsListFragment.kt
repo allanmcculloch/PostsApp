@@ -20,6 +20,10 @@ class CommentsListFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        val postId = arguments?.getInt("postId")
+
+        viewModel.loadData(postId)
+
         return inflateBinding<FragmentCommentsListBinding>(R.layout.fragment_comments_list, container) { it.vm = viewModel }
     }
 

@@ -2,10 +2,11 @@ package com.postsapp.android.ui.commentslist
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import com.postsapp.android.AVATAR_BASE_URL
 import com.postsapp.android.model.Comment
 
-class CommentViewModel {
+class CommentViewModel : ViewModel() {
     private val _name : MutableLiveData<String> = MutableLiveData()
     private val _body : MutableLiveData<String> = MutableLiveData()
     private val _email : MutableLiveData<String> = MutableLiveData()

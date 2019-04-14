@@ -15,7 +15,7 @@ class GetCommentsByPostIdUseCase(
         threadExecuter,
         AndroidSchedulers.mainThread()
     ) {
-    override fun build(id : Int): Observable<List<Comment>> {
-        return repository.getCommentsByPost(id)
+    override fun build(param : Int): Observable<List<Comment>> {
+        return repository.getCommentsByPost(param)
     }
 }

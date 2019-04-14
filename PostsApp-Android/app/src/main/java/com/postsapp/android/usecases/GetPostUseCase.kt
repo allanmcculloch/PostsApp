@@ -15,7 +15,7 @@ class GetPostUseCase(
         threadExecuter,
         AndroidSchedulers.mainThread()
     ) {
-    override fun build(id : Int): Observable<Post> {
-        return repository.getPost(id)
+    override fun build(param : Int): Observable<Post> {
+        return repository.getPost(param)
     }
 }

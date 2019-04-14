@@ -3,6 +3,7 @@ package com.postsapp.android.screens
 import androidx.test.espresso.matcher.ViewMatchers
 import com.postsapp.android.R
 import com.postsapp.android.testhelpers.checkHasText
+import com.postsapp.android.testhelpers.click
 import com.postsapp.android.testhelpers.waitForMatcher
 import org.hamcrest.Matchers
 
@@ -11,6 +12,7 @@ internal class PostDetailScreen {
     private val body = R.id.post_detail_body
     private val numberOfComments = R.id.numberOfComments
     private val authorName = R.id.authorName
+    private val commentsButton = R.id.viewCommentsButton
 
     fun checkTitleHasText(text : String) {
         title.checkHasText(text)
@@ -26,6 +28,10 @@ internal class PostDetailScreen {
 
     fun checkAuthorNameHasText(text : String) {
         authorName.checkHasText(text)
+    }
+
+    fun clickCommentsButton() {
+        commentsButton.click()
     }
 
     fun hasLoadedAndNameHasText(text: String)

@@ -18,6 +18,7 @@ Built with the latest Android Kotlin development using:
 - Live Data (Architecture Component)
 - Navigation (Architecture Component)
 - Picasso (for loading images)
+- Simple transition animations
 
 Shows unit testing using:
 
@@ -34,4 +35,7 @@ And UI testing using:
 Future improvements / ToDos
 
 - Improve UI styling
+- Better error handling and status notifications to users
+- Add loading notifications
+- Seperate out api models from domain models
 - In memory mock http server for UI Tests 
