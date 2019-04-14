@@ -3,7 +3,6 @@ package com.postsapp.android.repository
 import com.postsapp.android.repository.remote.PostsApiService
 import com.postsapp.android.model.Post
 import io.reactivex.Observable
-import java.util.concurrent.TimeUnit
 
 class PostsRepository(private val postsApiService : PostsApiService) {
     private var _cache : MutableList<Post> = mutableListOf()
@@ -23,7 +22,7 @@ class PostsRepository(private val postsApiService : PostsApiService) {
         }
         else {
             return Observable.just(cache)
-                .mergeWith(postsApiService.getPosts().delay(5000, TimeUnit.MILLISECONDS))
+                .mergeWith(postsApiService.getPosts())
                 .doOnNext { _cache = it.toMutableList() }
 
         }

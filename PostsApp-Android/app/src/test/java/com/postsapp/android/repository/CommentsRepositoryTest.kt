@@ -31,14 +31,14 @@ class CommentsRepositoryTest {
     }
 
     @Test
-    fun getCommentsByPost_hen_hasCache_returnsCache_thenApi() {
+    fun getCommentsByPost_when_hasCache_returnsCache_thenApi() {
         every { postsApiServiceMock.getCommentsByPost(samplePostId) }.returns(Observable.just(sampleDataApi))
 
-        commentsRepository.cache = hashMapOf(samplePostId to sampleDataInCache)
+        commentsRepository.cache = hashMapOf(samplePostId to sampleDataInCachePost1)
 
-        val commentsReturned = commentsRepository.getComments()
+        val commentsReturned = commentsRepository.getCommentsByPost(samplePostId)
 
-        commentsReturned.test().assertValueAt(0) { it == sampleDataInCache}
+        commentsReturned.test().assertValueAt(0) { it == sampleDataInCachePost1}
         commentsReturned.test().assertValueAt(1) { it == sampleDataApi}
     }
 
@@ -55,6 +55,49 @@ class CommentsRepositoryTest {
         assertEquals(commentsRepository.cache[samplePostId], sampleDataApi)
     }
 
+    @Test
+    fun getComments_when_nocache_updatesCacheFromApi() {
+        commentsRepository.cache = hashMapOf()
+
+        every { postsApiServiceMock.getComments() }.returns(Observable.just(sampleDataApi))
+
+        val commentsReturned = commentsRepository.getComments()
+
+        commentsReturned.test().assertValueAt(0) { it == sampleDataApi}
+
+        assertEquals(commentsRepository.cache[samplePostId], sampleDataApi)
+    }
+
+    @Test
+    fun getComments_when_cache_returnsCacheThenApi() {
+        commentsRepository.cache = hashMapOf(1 to sampleDataInCachePost1)
+
+        every { postsApiServiceMock.getComments() }.returns(Observable.just(sampleDataApi))
+
+        val commentsReturned = commentsRepository.getComments()
+
+        commentsReturned.test().assertValueAt(0) { it == sampleDataInCachePost1}
+        commentsReturned.test().assertValueAt(1) { it == sampleDataApi}
+
+        assertEquals(commentsRepository.cache[samplePostId], sampleDataApi)
+    }
+
+    @Test
+    fun getComments_when_cache_returnsCommentsForAllPosts() {
+        commentsRepository.cache = hashMapOf(1 to sampleDataInCachePost1, 2 to sampleDataInCachePost2)
+
+        every { postsApiServiceMock.getComments() }.returns(Observable.just(sampleDataApi))
+
+        val commentsReturned = commentsRepository.getComments()
+
+        commentsReturned.test().assertValueAt(0) { it.containsAll(sampleDataInCachePost1) }
+        commentsReturned.test().assertValueAt(0) { it.containsAll(sampleDataInCachePost2) }
+
+        commentsReturned.test().assertValueAt(1) { it == sampleDataApi}
+
+        assertEquals(commentsRepository.cache[samplePostId], sampleDataApi)
+    }
+
     private val sampleDataApi =
         listOf(
             Comment(1,1,"name1","email1","body1"),
@@ -63,8 +106,13 @@ class CommentsRepositoryTest {
 
         )
 
-    private val sampleDataInCache =
+    private val sampleDataInCachePost1 =
         listOf(
             Comment(1,4,"name4","email4","body4")
+        )
+
+    private val sampleDataInCachePost2 =
+        listOf(
+            Comment(2,5,"name4","email4","body4")
         )
 }

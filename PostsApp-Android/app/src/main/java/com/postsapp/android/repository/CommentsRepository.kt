@@ -22,10 +22,18 @@ class CommentsRepository(private val postsApiService : PostsApiService) {
     fun getComments() : Observable<List<Comment>> {
         val cachedFullCommentsList = cache.values.flatMap { it.toList() }
 
-        return Observable.just(cachedFullCommentsList)
-            .mergeWith(postsApiService.getComments().onErrorResumeNext(Observable.just(cachedFullCommentsList)))
-            .doOnNext {
-                cache = it.groupBy { p -> p.postId }.toMutableMap()
-            }
+        if (cache.isEmpty()) {
+            return postsApiService.getComments().onErrorResumeNext(Observable.just(cachedFullCommentsList))
+                .doOnNext {
+                    cache = it.groupBy { p -> p.postId }.toMutableMap()
+                }
+        }
+        else {
+            return Observable.just(cachedFullCommentsList)
+                .mergeWith(postsApiService.getComments().onErrorResumeNext(Observable.just(cachedFullCommentsList)))
+                .doOnNext {
+                    cache = it.groupBy { p -> p.postId }.toMutableMap()
+                }
+        }
     }
 }

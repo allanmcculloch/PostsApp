@@ -4,10 +4,13 @@ import com.postsapp.android.repository.remote.PostsApiService
 import com.postsapp.android.model.Post
 import io.mockk.every
 import io.mockk.mockk
+import io.mockk.verify
 import io.reactivex.Observable
 import org.junit.Assert.assertEquals
+import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Test
+import org.mockito.internal.verification.Times
 
 class PostsRepositoryTest {
     private lateinit var postsApiServiceMock: PostsApiService
@@ -51,6 +54,38 @@ class PostsRepositoryTest {
         postsReturned.test().assertValueAt(0) { it == sampleDataApi}
 
         assertEquals(postsRepository.cache, sampleDataApi)
+    }
+
+    @Test
+    fun getPost_when_nocache_updatesCacheFromApi() {
+        postsRepository.cache = listOf()
+
+        val postId = 1
+        val postItem = sampleDataApi.first { it.id == postId }
+
+        every { postsApiServiceMock.getPost(postId) }.returns(Observable.just(postItem))
+
+        val postsReturned = postsRepository.getPost(postId)
+
+        postsReturned.test().assertValueAt(0) { it == postItem}
+
+        assertTrue(postsRepository.cache.contains(postItem))
+
+        verify(exactly = 1) { postsApiServiceMock.getPost(postId)}
+    }
+
+    @Test
+    fun getPost_when_cached_getsFromCache() {
+        postsRepository.cache = sampleDataInCache
+
+        val postId = 4
+        val postItem = sampleDataInCache.first { it.id == postId }
+
+        val postsReturned = postsRepository.getPost(postId)
+
+        postsReturned.test().assertValueAt(0) { it == postItem }
+
+        verify(exactly = 0) { postsApiServiceMock.getPost(any())}
     }
 
     private val sampleDataApi =
