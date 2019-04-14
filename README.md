@@ -3,9 +3,10 @@
 This is a simple demo Android app with the following features:
 
 - View a list of posts 
-- Link to post details
-- View a list of users
-- View a list of comments linked from a post
+- View post details including title, body, author name, number of comments and author's avatar
+- View a list of users including name, email, company and avatar
+- View a list of all comments
+- View a list of comments associated with a post
 - Loads data from an API and caches the results (in memory)
 
 Built with the latest Android Kotlin development using:
