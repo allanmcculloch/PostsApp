@@ -12,8 +12,7 @@ class CommentsListTests {
     private val commentsListScreen = CommentsListScreen()
 
     @get:Rule
-    var activityRule: ActivityTestRule<MainActivity>
-            = ActivityTestRule(MainActivity::class.java)
+    var activityRule: ActivityTestRule<MainActivity> = ActivityTestRule(MainActivity::class.java)
 
     @Before
     fun setup() {
@@ -24,8 +23,8 @@ class CommentsListTests {
     fun checkCommentsListLoads() {
         //TODO: handle network delay with Rx Idling Resource or mock server
 
-        commentsListScreen.checkPositionHasText("id labore ex et quam laborum",0)
+        commentsListScreen.checkPositionHasText("id labore ex et quam laborum", 0)
 
-        commentsListScreen.checkPositionHasText("quo vero reiciendis velit similique earum",1)
+        commentsListScreen.checkPositionHasText("quo vero reiciendis velit similique earum", 1)
     }
 }

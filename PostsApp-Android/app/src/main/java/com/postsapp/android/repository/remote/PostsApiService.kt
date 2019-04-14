@@ -9,15 +9,15 @@ import io.reactivex.Observable
 class PostsApiService(clientProvider: ClientProvider) {
     private val api = clientProvider.client.create(PostsApiEndpoints::class.java)
 
-    fun getPosts() : Observable<List<Post>> = api.getPosts()
+    fun getPosts(): Observable<List<Post>> = api.getPosts()
 
-    fun getPost(id: Int) : Observable<Post> = api.getPost(id)
+    fun getPost(id: Int): Observable<Post> = api.getPost(id)
 
-    fun getUsers() : Observable<List<User>> = api.getUsers()
+    fun getUsers(): Observable<List<User>> = api.getUsers()
 
-    fun getUser(id : Int) : Observable<User> = api.getUser(id)
+    fun getUser(id: Int): Observable<User> = api.getUser(id)
 
-    fun getCommentsByPost(postId : Int) : Observable<List<Comment>> = api.getCommentsByPost(postId)
+    fun getCommentsByPost(postId: Int): Observable<List<Comment>> = api.getCommentsByPost(postId)
 
-    fun getComments() : Observable<List<Comment>> = api.getComments()
+    fun getComments(): Observable<List<Comment>> = api.getComments()
 }

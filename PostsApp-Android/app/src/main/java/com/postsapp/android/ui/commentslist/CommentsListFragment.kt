@@ -24,7 +24,9 @@ class CommentsListFragment : Fragment() {
 
         viewModel.loadData(postId)
 
-        return inflateBinding<FragmentCommentsListBinding>(R.layout.fragment_comments_list, container) { it.vm = viewModel }
+        return inflateBinding<FragmentCommentsListBinding>(R.layout.fragment_comments_list, container) {
+            it.vm = viewModel
+        }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

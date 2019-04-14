@@ -17,21 +17,21 @@ import org.hamcrest.Matcher
 internal class PostsListScreen {
     private val postsList = R.id.postsListRecyclerView
 
-    fun checkPositionHasText(text : String, position : Int) {
+    fun checkPositionHasText(text: String, position: Int) {
         checkTextOnRecycler(postsList, text, position)
     }
 
-    fun clickPosition(position : Int) {
+    fun clickPosition(position: Int) {
         clickItemOnRecycler(postsList, position)
     }
 }
 
-fun clickItemOnRecycler(recyclerId : Int, position : Int) {
+fun clickItemOnRecycler(recyclerId: Int, position: Int) {
     onView(withId(recyclerId))
         .perform(RecyclerViewActions.actionOnItemAtPosition<PostsListAdapter.ViewHolder>(position, click()))
 }
 
-fun checkTextOnRecycler(recyclerId : Int, text: String, position : Int) {
+fun checkTextOnRecycler(recyclerId: Int, text: String, position: Int) {
     onView(withId(recyclerId))
         .check(matches(atPosition(position, hasDescendant(withText(text)))))
 }

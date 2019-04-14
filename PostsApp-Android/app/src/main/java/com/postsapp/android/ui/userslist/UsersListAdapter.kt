@@ -8,7 +8,7 @@ import com.postsapp.android.R
 import com.postsapp.android.databinding.ItemUserBinding
 import com.postsapp.android.model.User
 
-class UsersListAdapter: RecyclerView.Adapter<UsersListAdapter.ViewHolder>() {
+class UsersListAdapter : RecyclerView.Adapter<UsersListAdapter.ViewHolder>() {
     private lateinit var userList: List<User>
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {

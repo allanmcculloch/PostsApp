@@ -10,7 +10,7 @@ import com.postsapp.android.R
 import com.postsapp.android.databinding.ItemPostBinding
 import com.postsapp.android.model.Post
 
-class PostsListAdapter: RecyclerView.Adapter<PostsListAdapter.ViewHolder>() {
+class PostsListAdapter : RecyclerView.Adapter<PostsListAdapter.ViewHolder>() {
     private lateinit var postsList: List<Post>
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {

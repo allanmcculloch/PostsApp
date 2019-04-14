@@ -8,12 +8,15 @@ import com.postsapp.android.usecases.UseCase
 import io.reactivex.disposables.Disposable
 import java.util.concurrent.TimeUnit
 
-class CommentsListViewModel(private val getCommentsUseCase: GetCommentsUseCase, private val getCommentsByPostIdUseCase: GetCommentsByPostIdUseCase) : ViewModel() {
+class CommentsListViewModel(
+    private val getCommentsUseCase: GetCommentsUseCase,
+    private val getCommentsByPostIdUseCase: GetCommentsByPostIdUseCase
+) : ViewModel() {
     val commentsListAdapter: CommentsListAdapter = CommentsListAdapter()
 
     private lateinit var subscription: Disposable
 
-    fun loadData(postIdFilter : Int?) {
+    fun loadData(postIdFilter: Int?) {
         if (postIdFilter != null)
             loadWithFilter(postIdFilter)
         else
@@ -38,7 +41,7 @@ class CommentsListViewModel(private val getCommentsUseCase: GetCommentsUseCase, 
                 }, Throwable::printStackTrace)
     }
 
-    private fun onFetchedList(commentsList : List<Comment>) {
+    private fun onFetchedList(commentsList: List<Comment>) {
         commentsListAdapter.updateList(commentsList)
     }
 

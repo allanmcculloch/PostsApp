@@ -19,11 +19,11 @@ class PostsListViewModel(private val getPostsListUseCase: GetPostsListUseCase) :
         subscription = getPostsListUseCase
             .execute()
             .subscribe({
-            onFetchedList(it)
-        }, Throwable::printStackTrace)
+                onFetchedList(it)
+            }, Throwable::printStackTrace)
     }
 
-    private fun onFetchedList(postList : List<Post>) {
+    private fun onFetchedList(postList: List<Post>) {
         postsListAdapter.updateList(postList)
     }
 

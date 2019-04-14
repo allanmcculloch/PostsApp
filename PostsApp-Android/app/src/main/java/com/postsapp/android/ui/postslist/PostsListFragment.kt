@@ -20,7 +20,9 @@ class PostsListFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflateBinding<FragmentPostsListBinding>(R.layout.fragment_posts_list, container) { it.viewModel = viewModel }
+        return inflateBinding<FragmentPostsListBinding>(R.layout.fragment_posts_list, container) {
+            it.viewModel = viewModel
+        }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

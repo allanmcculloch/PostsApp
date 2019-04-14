@@ -4,10 +4,10 @@ import com.postsapp.android.repository.remote.PostsApiService
 import com.postsapp.android.model.Post
 import io.reactivex.Observable
 
-class PostsRepository(private val postsApiService : PostsApiService) {
-    private var _cache : MutableList<Post> = mutableListOf()
+class PostsRepository(private val postsApiService: PostsApiService) {
+    private var _cache: MutableList<Post> = mutableListOf()
 
-    var cache : List<Post>
+    var cache: List<Post>
         get() {
             return _cache
         }
@@ -15,12 +15,11 @@ class PostsRepository(private val postsApiService : PostsApiService) {
             _cache = value.toMutableList()
         }
 
-    fun getPosts() : Observable<List<Post>> {
+    fun getPosts(): Observable<List<Post>> {
         if (_cache.isEmpty()) {
             return postsApiService.getPosts()
                 .doOnNext { _cache = it.toMutableList() }
-        }
-        else {
+        } else {
             return Observable.just(cache)
                 .mergeWith(postsApiService.getPosts().onErrorResumeNext(Observable.just(cache)))
                 .doOnNext { _cache = it.toMutableList() }
@@ -28,12 +27,11 @@ class PostsRepository(private val postsApiService : PostsApiService) {
         }
     }
 
-    fun getPost(id : Int) : Observable<Post> {
-        if (_cache.isEmpty() || ! _cache.any { r -> r.id == id }) {
+    fun getPost(id: Int): Observable<Post> {
+        if (_cache.isEmpty() || !_cache.any { r -> r.id == id }) {
             return postsApiService.getPost(id)
                 .doOnNext { _cache.add(it) }
-        }
-        else {
+        } else {
             return Observable.just(_cache.first { r -> r.id == id })
         }
     }

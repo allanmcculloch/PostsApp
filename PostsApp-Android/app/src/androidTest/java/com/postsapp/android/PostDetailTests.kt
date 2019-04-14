@@ -16,8 +16,7 @@ class PostDetailTests {
     private val commentsListScreen = CommentsListScreen()
 
     @get:Rule
-    var activityRule: ActivityTestRule<MainActivity>
-            = ActivityTestRule(MainActivity::class.java)
+    var activityRule: ActivityTestRule<MainActivity> = ActivityTestRule(MainActivity::class.java)
 
     @Before
     fun setup() {
@@ -40,7 +39,7 @@ class PostDetailTests {
         postsListScreen.clickPosition(1)
         postDetailsScreen.checkTitleHasText("qui est esse")
         postDetailsScreen.clickCommentsButton()
-        commentsListScreen.checkPositionHasText("et fugit eligendi deleniti quidem qui sint nihil autem",0)
-        commentsListScreen.checkPositionHasText("repellat consequatur praesentium vel minus molestias voluptatum",1)
+        commentsListScreen.checkPositionHasText("et fugit eligendi deleniti quidem qui sint nihil autem", 0)
+        commentsListScreen.checkPositionHasText("repellat consequatur praesentium vel minus molestias voluptatum", 1)
     }
 }

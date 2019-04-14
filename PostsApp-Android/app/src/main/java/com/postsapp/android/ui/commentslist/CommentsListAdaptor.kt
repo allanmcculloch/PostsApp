@@ -8,7 +8,7 @@ import com.postsapp.android.R
 import com.postsapp.android.databinding.ItemCommentBinding
 import com.postsapp.android.model.Comment
 
-class CommentsListAdapter: RecyclerView.Adapter<CommentsListAdapter.ViewHolder>() {
+class CommentsListAdapter : RecyclerView.Adapter<CommentsListAdapter.ViewHolder>() {
     private lateinit var commentsList: List<Comment>
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {

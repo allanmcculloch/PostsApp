@@ -12,8 +12,7 @@ class UsersListTests {
     private val usersListScreen = UsersListScreen()
 
     @get:Rule
-    var activityRule: ActivityTestRule<MainActivity>
-            = ActivityTestRule(MainActivity::class.java)
+    var activityRule: ActivityTestRule<MainActivity> = ActivityTestRule(MainActivity::class.java)
 
     @Before
     fun setup() {
@@ -24,7 +23,7 @@ class UsersListTests {
     fun checkUsersListLoads() {
         //TODO: handle network delay with Rx Idling Resource or mock server
 
-        usersListScreen.checkPositionHasText("Leanne Graham",0)
-        usersListScreen.checkPositionHasText("Ervin Howell",1)
+        usersListScreen.checkPositionHasText("Leanne Graham", 0)
+        usersListScreen.checkPositionHasText("Ervin Howell", 1)
     }
 }

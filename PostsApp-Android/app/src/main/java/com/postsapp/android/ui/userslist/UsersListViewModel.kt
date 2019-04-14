@@ -19,10 +19,10 @@ class UsersListViewModel(private val getUsersUseCase: GetUsersUseCase) : ViewMod
         subscription = getUsersUseCase.execute()
             .subscribe({
                 onFetchedList(it)
-            },Throwable::printStackTrace)
+            }, Throwable::printStackTrace)
     }
 
-    private fun onFetchedList(users : List<User>) {
+    private fun onFetchedList(users: List<User>) {
         usersListAdaptor.updateList(users)
     }
 

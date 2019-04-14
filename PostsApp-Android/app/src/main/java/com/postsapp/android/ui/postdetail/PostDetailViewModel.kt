@@ -9,23 +9,23 @@ import io.reactivex.disposables.Disposable
 import java.util.concurrent.TimeUnit
 
 class PostDetailViewModel(private val getPostDetailUseCase: GetPostDetailUseCase) : ViewModel() {
-    private val _title : MutableLiveData<String> = MutableLiveData()
-    private val _body : MutableLiveData<String> = MutableLiveData()
-    private val _authorName : MutableLiveData<String> = MutableLiveData()
-    private val _numberOfComments : MutableLiveData<String> = MutableLiveData()
-    private val _imageUrl : MutableLiveData<String> = MutableLiveData()
+    private val _title: MutableLiveData<String> = MutableLiveData()
+    private val _body: MutableLiveData<String> = MutableLiveData()
+    private val _authorName: MutableLiveData<String> = MutableLiveData()
+    private val _numberOfComments: MutableLiveData<String> = MutableLiveData()
+    private val _imageUrl: MutableLiveData<String> = MutableLiveData()
 
-    val title : LiveData<String> = _title
-    val body : LiveData<String> = _body
-    val authorName : LiveData<String> = _authorName
-    val numberOfComments : LiveData<String> = _numberOfComments
-    val imageUrl : LiveData<String> = _imageUrl
+    val title: LiveData<String> = _title
+    val body: LiveData<String> = _body
+    val authorName: LiveData<String> = _authorName
+    val numberOfComments: LiveData<String> = _numberOfComments
+    val imageUrl: LiveData<String> = _imageUrl
 
-    var postId : Int? = null
+    var postId: Int? = null
 
     private lateinit var subscription: Disposable
 
-    fun loadData(postId : Int) {
+    fun loadData(postId: Int) {
         this.postId = postId
 
         subscription = getPostDetailUseCase.execute(postId)
@@ -36,7 +36,7 @@ class PostDetailViewModel(private val getPostDetailUseCase: GetPostDetailUseCase
                 _authorName.value = it?.userName
                 _imageUrl.value = "$AVATAR_BASE_URL/${it?.userId}.png"
 
-            },Throwable::printStackTrace)
+            }, Throwable::printStackTrace)
     }
 
     override fun onCleared() {

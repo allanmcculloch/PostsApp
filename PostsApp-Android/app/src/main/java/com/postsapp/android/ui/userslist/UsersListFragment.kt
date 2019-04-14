@@ -20,7 +20,9 @@ class UsersListFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflateBinding<FragmentUsersListBinding>(R.layout.fragment_users_list, container) { it.viewModel = viewModel }
+        return inflateBinding<FragmentUsersListBinding>(R.layout.fragment_users_list, container) {
+            it.viewModel = viewModel
+        }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

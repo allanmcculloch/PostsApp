@@ -22,7 +22,7 @@ val PostsAppModule = module {
     single { GetPostsListUseCase(get()) }
     single { GetUsersUseCase(get()) }
     single { GetPostUseCase(get()) }
-    single { GetPostDetailUseCase(get(),get(),get()) }
+    single { GetPostDetailUseCase(get(), get(), get()) }
     single { GetCommentsUseCase(get()) }
     single { GetCommentsByPostIdUseCase(get()) }
 

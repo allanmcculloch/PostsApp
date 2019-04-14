@@ -26,7 +26,7 @@ class ClientProvider {
     }
 
     private fun makeHttpClient() =
-         OkHttpClient.Builder()
+        OkHttpClient.Builder()
             .connectTimeout(10, TimeUnit.SECONDS)
             .readTimeout(10, TimeUnit.SECONDS)
             .build()

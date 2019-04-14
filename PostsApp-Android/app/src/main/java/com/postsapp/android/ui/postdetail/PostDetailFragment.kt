@@ -26,7 +26,9 @@ class PostDetailFragment : Fragment() {
 
         viewModel.loadData(postId!!)
 
-        return inflateBinding<FragmentPostDetailBinding>(R.layout.fragment_post_detail, container) { it.viewModel = viewModel }
+        return inflateBinding<FragmentPostDetailBinding>(R.layout.fragment_post_detail, container) {
+            it.viewModel = viewModel
+        }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

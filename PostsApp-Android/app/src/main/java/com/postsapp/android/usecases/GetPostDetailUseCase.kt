@@ -24,18 +24,18 @@ class GetPostDetailUseCase(
         threadExecuter,
         AndroidSchedulers.mainThread()
     ) {
-    override fun build(id : Int): Observable<PostDetail> {
+    override fun build(id: Int): Observable<PostDetail> {
         return Observable.zip(
             postRepository.getPost(id).flatMap(
-                    { post: Post -> usersRepository.getUser(post.userId) },
-                    { post: Post, user: User -> Pair(user, post) }
-                ),
+                { post: Post -> usersRepository.getUser(post.userId) },
+                { post: Post, user: User -> Pair(user, post) }
+            ),
             commentsRepository.getCommentsByPost(id),
             BiFunction { userPost, comments -> convert(userPost, comments) }
         )
     }
 
-    private fun convert(userPost : Pair<User,Post>, comments: List<Comment>) : PostDetail {
+    private fun convert(userPost: Pair<User, Post>, comments: List<Comment>): PostDetail {
         val user = userPost.first
         val post = userPost.second
 

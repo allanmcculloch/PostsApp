@@ -14,19 +14,19 @@ internal class PostDetailScreen {
     private val authorName = R.id.authorName
     private val commentsButton = R.id.viewCommentsButton
 
-    fun checkTitleHasText(text : String) {
+    fun checkTitleHasText(text: String) {
         title.checkHasText(text)
     }
 
-    fun checkBodyHasText(text : String) {
+    fun checkBodyHasText(text: String) {
         body.checkHasText(text)
     }
 
-    fun checkNumberOfCommentsHasText(text : String) {
+    fun checkNumberOfCommentsHasText(text: String) {
         numberOfComments.checkHasText(text)
     }
 
-    fun checkAuthorNameHasText(text : String) {
+    fun checkAuthorNameHasText(text: String) {
         authorName.checkHasText(text)
     }
 
@@ -34,12 +34,12 @@ internal class PostDetailScreen {
         commentsButton.click()
     }
 
-    fun hasLoadedAndNameHasText(text: String)
-    {
+    fun hasLoadedAndNameHasText(text: String) {
         title.waitForMatcher(
             Matchers.allOf(
                 ViewMatchers.isDisplayed(),
                 ViewMatchers.withText(Matchers.containsString(text))
-            ))
+            )
+        )
     }
 }

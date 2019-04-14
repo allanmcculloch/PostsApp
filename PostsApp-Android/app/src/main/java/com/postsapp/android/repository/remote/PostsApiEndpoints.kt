@@ -13,16 +13,16 @@ interface PostsApiEndpoints {
     fun getPosts(): Observable<List<Post>>
 
     @GET("/posts/{id}")
-    fun getPost(@Path("id") id : Int): Observable<Post>
+    fun getPost(@Path("id") id: Int): Observable<Post>
 
     @GET("/users")
     fun getUsers(): Observable<List<User>>
 
     @GET("/users/{id}")
-    fun getUser(@Path("id") id : Int): Observable<User>
+    fun getUser(@Path("id") id: Int): Observable<User>
 
     @GET("/comments")
-    fun getCommentsByPost(@Query("postId") postId : Int): Observable<List<Comment>>
+    fun getCommentsByPost(@Query("postId") postId: Int): Observable<List<Comment>>
 
     @GET("/comments")
     fun getComments(): Observable<List<Comment>>
